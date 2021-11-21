@@ -14,8 +14,7 @@ export class UsersRepository implements IUsersRepository {
   async findUserWithGamesById({
     user_id,
   }: IFindUserWithGamesDTO): Promise<User> {
-    const user = await this.repository.findOne({
-      where: { id: user_id },
+    const user = await this.repository.findOneOrFail(user_id, {
       relations: ["games"],
     });
 
